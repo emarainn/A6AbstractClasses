@@ -1,6 +1,6 @@
 ﻿using RepoTest.Classes;
 
-namespace MyNamespace
+namespace RepoTest.Classes
 {
     public class Show : Media
     {
