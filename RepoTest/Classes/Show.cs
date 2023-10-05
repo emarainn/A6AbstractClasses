@@ -1,6 +1,7 @@
-﻿using RepoTest.Classes;
+﻿
+using System;
 
-namespace MyNamespace
+namespace RepoTest.Classes
 {
     public class Show : Media
     {
@@ -9,9 +10,25 @@ namespace MyNamespace
         public int Episode { get; set; }
         public string Writers { get; set; }
 
-        public override string Display()
+        public override void Display()
         {
-            return null;
+            string showsfile = $"{Environment.CurrentDirectory}/Files/shows.csv";
+            Console.WriteLine("\nSHOWS:");
+            Read(showsfile);
+        }
+
+        public void Read(string showsfile)
+        {
+            if (File.Exists(showsfile))
+            {
+                StreamReader sr = new StreamReader(showsfile);
+
+                while (sr.EndOfStream != true)
+                {
+                    Console.WriteLine(sr.ReadLine());
+                }
+
+            }
         }
     }
 

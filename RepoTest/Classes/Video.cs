@@ -1,4 +1,6 @@
-﻿namespace RepoTest.Classes
+﻿using System.Threading.Channels;
+
+namespace RepoTest.Classes
 {
     public class Video : Media
     {
@@ -6,11 +8,26 @@
         public int Length { get; set; }
         public string Regions { get; set; }
 
-        public override string Display()
+        public override void Display()
         {
-            return null;
+            string videosfile = $"{Environment.CurrentDirectory}/Files/videos.csv";
+            Console.WriteLine("\nVIDEOS:");
+            Read(videosfile);
         }
 
+        public void Read(string videosfile)
+        {
+            if (File.Exists(videosfile))
+            {
+                StreamReader sr = new StreamReader(videosfile);
+
+                while (sr.EndOfStream != true)
+                {
+                    Console.WriteLine(sr.ReadLine());
+                }
+
+            }
+        }
     }
 
 }
